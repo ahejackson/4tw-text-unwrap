@@ -3,7 +3,6 @@
     <textarea v-model="text" placeholder="Paste text to unwrap here" rows="10" cols="80"></textarea>
     <br>
     <button type="button" @click="unwrap">Unwrap</button>
-    <button type="button" @click="reset">Reset</button>
     <button type="button" @click="download">Download</button>
     <button
       type="button"
@@ -17,6 +16,8 @@
 </template>
 
 <script>
+import { saveAs } from 'file-saver'
+
 const test = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 eiusmod tempor incididunt ut labore et dolore magna aliqua. Turpis
 egestas maecenas pharetra convallis posuere morbi leo. Adipiscing
@@ -69,7 +70,10 @@ export default {
       this.text = test
     },
 
-    download: function() {},
+    download: function() {
+      let blob = new Blob([this.text], { type: 'text/plain;charset=utf-8' })
+      saveAs(blob, 'unwrapped.txt')
+    },
 
     unwrap: function() {
       let lines = this.text.split('\n')
