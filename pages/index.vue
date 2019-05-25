@@ -2,7 +2,7 @@
   <section class="container">
     <div>
       <h1 class="title">Text Unwrap</h1>
-      <h2 class="subtitle">Unwrap exported 4tw text files</h2>
+      <p>Choose a file to automatically unwrap and download or paste wrapped text below.</p>
       <TextUnwrapper></TextUnwrapper>
     </div>
   </section>
@@ -36,17 +36,5 @@ export default {
   font-size: 1.5rem;
   color: #35495e;
   letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 1.25rem;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>
