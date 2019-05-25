@@ -2,7 +2,9 @@
 
 > Unwraps exported 4tw text files
 
-When you export writing as plaintext (.txt) files from [4thewords](https://4thewords.com/), the exported files automatically wrap columns at 70 characters long. Manually unwrapping these files to import into a program like Scrivener can be frustrating.
+When you export writing as plaintext (.txt) files from [4thewords](https://4thewords.com/), the exported files automatically wrap columns at 70 characters long.
+
+This is useful in some cases, but when it's not, manually unwrapping these files to import into a program like Scrivener can take some time.
 
 Paste the contents of an exported text file onto the site, click unwrap, then copy the unwrapped text into whatever program you want.
 
@@ -10,14 +12,14 @@ This repo contains the source code for the site and a python script (4tw_unwrap.
 
 ## Python script usage
 
-``` bash
+```bash
 # Unwrap a file
 python3 4tw_unwrap.py filename
 ```
 
 By default, the python script will save the unwrapped version of filename.txt as filename-unwrap.txt
 
-``` bash
+```bash
 # Unwrap a file to a specific output file
 python3 4tw_unwrap.py filename outputfilename
 ```
@@ -28,7 +30,7 @@ The script will look in the local directory first. If it can't find the file in 
 
 The website is built with [Nuxt](https://nuxtjs.org). To build, clone the repo and run:
 
-``` bash
+```bash
 # install dependencies
 $ npm install
 

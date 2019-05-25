@@ -1,23 +1,19 @@
 <template>
   <section class="container">
     <div>
-      <logo />
-      <h1 class="title">
-        Text Unwrap
-      </h1>
-      <h2 class="subtitle">
-        Unwraps exported 4tw text files
-      </h2>
+      <h1 class="title">Text Unwrap</h1>
+      <h2 class="subtitle">Unwrap exported 4tw text files</h2>
+      <TextUnwrapper></TextUnwrapper>
     </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import TextUnwrapper from '~/components/TextUnwrapper.vue'
 
 export default {
   components: {
-    Logo
+    TextUnwrapper
   }
 }
 </script>
@@ -37,14 +33,14 @@ export default {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 1.5rem;
   color: #35495e;
   letter-spacing: 1px;
 }
 
 .subtitle {
   font-weight: 300;
-  font-size: 42px;
+  font-size: 1.25rem;
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
