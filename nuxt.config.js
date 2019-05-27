@@ -35,7 +35,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@/assets/main.scss'],
 
   /*
    ** Plugins to load before mounting the App
@@ -45,7 +45,29 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    'nuxt-webfontloader',
+    [
+      'nuxt-fontawesome',
+      {
+        component: 'fa',
+        imports: [
+          //import whole set
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: [
+              'faCog',
+              'faDownload',
+              'faCopy',
+              'faFileUpload',
+              'faTextWidth',
+              'faAlignLeft'
+            ]
+          }
+        ]
+      }
+    ]
+  ],
 
   /*
    ** Build configuration
@@ -55,6 +77,15 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+
+  /*
+   ** Webfonts
+   */
+  webfontloader: {
+    google: {
+      families: ['Inconsolata:400,700', 'Noto+Sans:400,700']
+    }
   },
 
   ...routerBase

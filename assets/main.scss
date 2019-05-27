@@ -1,0 +1,171 @@
+$font: 'Noto Sans', Inconsolata, sans-serif;
+$textarea-font: Inconsolata, sans-serif;
+$top-color: #fff;
+$textarea-color: #333;
+$bottom-color: #4593e3;
+
+$title-color: $bottom-color;
+$text-color: #000;
+$textarea-text-color: #eee;
+
+
+
+@mixin btn {
+  width: 200px;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+  padding: 0.8rem 1.6rem;
+  display: inline-block;
+  margin: 0.5rem 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+
+  &:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  background: darken($bottom-color, 10);
+  color: #fff;
+  border-radius: 0.5rem;
+
+  &:hover {
+    background: scale-color($bottom-color, $saturation: 50%, $lightness: -30%);
+  }
+
+  &:active {
+    background: scale-color($bottom-color, $saturation: 50%, $lightness: -50%);
+    top: 2px;
+  }
+}
+
+html {
+  font-family: $font;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.page {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  color: $text-color;
+  background-color: $top-color;
+}
+
+.title {
+  font: {
+    weight: 300;
+    size: 2rem;
+  }
+  color: $title-color;
+  display: block;
+  letter-spacing: 1px;
+}
+
+.text-unwrapper {
+  background-color: $bottom-color;
+  padding: 0 0 0 0;
+  flex-grow: 2;
+
+  &-loadfile {
+    background-color: $top-color;
+  }
+
+  &-textarea {
+    font: {
+      family: $textarea-font;
+      size: 1.0rem;
+    }
+    color: $textarea-text-color;
+    background-color: $textarea-color;
+    width: 100vw;
+    height: 40vh;
+    border: 0;
+    outline: none;
+    resize: none;
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+      font-size: 0.9rem;
+      padding: 1em 5%;
+    } 
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+      font-size: 0.9rem;
+      padding: 1em 7.5%;
+    } 
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+      font-size: 1.0rem;
+      padding: 1em 10%;
+    } 
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+      padding: 1em 18%;
+    } 
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+      padding: 1em 20%;
+    }
+  }
+
+  &-controls {
+    display: flex;
+    justify-content: center;
+    flex: {
+      wrap: wrap;
+    }
+
+    button {
+      @include btn;
+    }
+  }
+}
+
+.text-reader {
+  @include btn;
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+  }
+}

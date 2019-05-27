@@ -1,26 +1,48 @@
 <template>
-  <div>
-    <text-reader @load="loadfile($event)"></text-reader>
-    <br>
-    <textarea v-model="text" placeholder="Paste text to unwrap here" rows="10" cols="80"></textarea>
-    <br>
-    <button type="button" @click="unwrap">Unwrap</button>
-    <button type="button" @click="download">Download</button>
-    <button
-      type="button"
-      v-clipboard:copy="text"
-      v-clipboard:success="copySuccess"
-      v-clipboard:error="copyError"
-    >Copy to clipboard</button>
-    <br>Wrap width:
-    <input type="number" v-model="linewidth">
+  <div class="text-unwrapper">
+    <section class="text-unwrapper-loadfile">
+      <text-reader @load="loadfile($event)">
+        <fa icon="file-upload"/> Upload File
+      </text-reader>
+    </section>
+
+    <textarea
+      v-model="text"
+      placeholder="Paste text to unwrap here"
+      rows="10"
+      cols="80"
+      class="text-unwrapper-textarea"
+    ></textarea>
+
+    <section class="text-unwrapper-controls">
+      <button type="button" @click="unwrap">
+        <fa icon="align-left"/> Unwrap
+      </button>
+      <button type="button" @click="download">
+        <fa icon="download"/> Download
+      </button>
+      <button
+        type="button"
+        v-clipboard:copy="text"
+        v-clipboard:success="copySuccess"
+        v-clipboard:error="copyError"
+      >
+        <fa icon="copy"/> Copy Text
+      </button>
+    </section>
+
+    <section class="text-unwrapper-settings">
+      <fa icon="cog"/> Settings
+      Wrap width:
+      <input type="number" v-model="linewidth">
+    </section>
   </div>
 </template>
 
 <script>
 import { saveAs } from 'file-saver'
 
-import TextReader from '~/components/TextReader'
+import TextReader from '@/components/TextReader'
 
 export default {
   name: 'TextUnwrapper',
@@ -64,6 +86,10 @@ export default {
     },
 
     unwrap: function() {
+      if (this.text == '') {
+        return
+      }
+
       let lines = this.text.split('\n')
 
       let unwrapped = ''
@@ -104,6 +130,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
