@@ -68,7 +68,7 @@ export default {
 
   computed: {
     textAreaWidth: function() {
-      return `max-width: ${this.linewidth + 10}ch;`
+      return `max-width: ${this.linewidth + 16}ch;`
     }
   },
 
