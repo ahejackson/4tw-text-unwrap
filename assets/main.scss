@@ -229,7 +229,7 @@ section {
   button {
     @extend .basebtn;
     display: inline-block;
-    padding: 0.7rem 0.8rem;
+    padding: 0.7rem 1rem;
     font-weight: 700;
     cursor: pointer;
 
@@ -286,6 +286,6 @@ section {
   }
 
   label {
-    padding: 0.4rem 0.7rem;
+    padding: 0.4rem 0.6rem 0.4rem 0.8rem;
   }
 }
