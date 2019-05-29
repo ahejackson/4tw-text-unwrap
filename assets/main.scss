@@ -1,47 +1,39 @@
 $font: 'Noto Sans', Inconsolata, sans-serif;
 $textarea-font: Inconsolata, sans-serif;
-$top-color: #fff;
+$top-color: #fdfdfd;
 $textarea-color: #333;
 $bottom-color: #4593e3;
 
-$title-color: $bottom-color;
-$text-color: #000;
+$text-color: $textarea-color;
 $textarea-text-color: #eee;
 
+$spacer: 0.7rem;
 
-
-@mixin btn {
-  width: 200px;
+.basebtn {
+  background: darken($bottom-color, 10);
+  color: $textarea-text-color;
   border: none;
-  font-family: inherit;
-  font-size: inherit;
-  color: inherit;
-  background: none;
+  border-radius: 0.5rem;
+  outline: none;
+  font: {
+    family: inherit;
+    size: inherit;
+  }
+}
+
+.btn {
+  @extend .basebtn;
   cursor: pointer;
-  padding: 0.8rem 1.6rem;
+  padding: 0.7rem;
   display: inline-block;
-  margin: 0.5rem 0.5rem;
+  margin: 0rem $spacer/2 $spacer;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
-  outline: none;
   position: relative;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
-
-  &:after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-  }
-
-  background: darken($bottom-color, 10);
-  color: #fff;
-  border-radius: 0.5rem;
 
   &:hover {
     background: scale-color($bottom-color, $saturation: 50%, $lightness: -30%);
@@ -50,6 +42,10 @@ $textarea-text-color: #eee;
   &:active {
     background: scale-color($bottom-color, $saturation: 50%, $lightness: -50%);
     top: 2px;
+  }
+
+  svg {
+    margin-right: $spacer;
   }
 }
 
@@ -71,6 +67,10 @@ html {
   margin: 0;
 }
 
+section {
+  margin: 0;
+}
+
 .page {
   margin: 0 auto;
   min-height: 100vh;
@@ -89,77 +89,120 @@ html {
     weight: 300;
     size: 2rem;
   }
-  color: $title-color;
   display: block;
-  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 1rem 0rem 0rem;
+
+  &-first {
+    letter-spacing: 1px;
+    color: $bottom-color;
+  }
+
+  &-last {
+    font-weight: 700;
+    color: $textarea-color;
+  }
+}
+
+.header {
+  p {
+    margin: $spacer 2 * $spacer;
+  }
 }
 
 .text-unwrapper {
   background-color: $bottom-color;
-  padding: 0 0 0 0;
   flex-grow: 2;
+  display: flex;
+  flex: {
+    direction: column;
+  }
 
   &-loadfile {
     background-color: $top-color;
   }
 
-  &-textarea {
+  &-textarea-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    background-color: $textarea-color;
     font: {
       family: $textarea-font;
-      size: 1.0rem;
+      size: 1rem;
+    }
+  }
+
+  &-textarea {
+    font: {
+      family: inherit;
+      size: inherit;
     }
     color: $textarea-text-color;
     background-color: $textarea-color;
-    width: 100vw;
-    height: 40vh;
+    height: 50vh;
     border: 0;
     outline: none;
     resize: none;
+    display: block;
+    padding: 1rem;
+
+    width: 100%;
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
       font-size: 0.9rem;
-      padding: 1em 5%;
-    } 
+      height: 40vh;
+    }
 
     /* Small devices (portrait tablets and large phones, 600px and up) */
     @media only screen and (min-width: 600px) {
       font-size: 0.9rem;
-      padding: 1em 7.5%;
-    } 
+      height: 40vh;
+    }
 
     /* Medium devices (landscape tablets, 768px and up) */
     @media only screen and (min-width: 768px) {
-      font-size: 1.0rem;
-      padding: 1em 10%;
-    } 
+      font-size: 1rem;
+      height: 50vh;
+    }
 
     /* Large devices (laptops/desktops, 992px and up) */
     @media only screen and (min-width: 992px) {
-      padding: 1em 18%;
-    } 
+    }
 
     /* Extra large devices (large laptops and desktops, 1200px and up) */
     @media only screen and (min-width: 1200px) {
-      padding: 1em 20%;
     }
   }
 
   &-controls {
     display: flex;
     justify-content: center;
+    padding-top: $spacer;
+
     flex: {
       wrap: wrap;
     }
 
     button {
-      @include btn;
+      @extend .btn;
+      width: 180px;
     }
+  }
+
+  &-settings-section {
+    flex: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
   }
 }
 
 .text-reader {
-  @include btn;
+  width: 180px;
+  @extend .btn;
 
   input {
     position: absolute;
@@ -167,5 +210,87 @@ html {
     left: 0;
     z-index: -1;
     opacity: 0;
+  }
+}
+
+.text-unwrapper-settings {
+  @extend .basebtn;
+  display: flex;
+  flex: {
+    direction: row-reverse;
+  }
+  align-items: center;
+  font-weight: 300;
+
+  margin: 0rem $spacer/2 $spacer;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  position: relative;
+
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+
+  button {
+    @extend .basebtn;
+    display: inline-block;
+    padding: 0.7rem 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      background: scale-color(
+        $bottom-color,
+        $saturation: 50%,
+        $lightness: -30%
+      );
+    }
+
+    &:active {
+      background: scale-color(
+        $bottom-color,
+        $saturation: 50%,
+        $lightness: -50%
+      );
+      top: 2px;
+    }
+
+    &.opened {
+      background: scale-color(
+        $bottom-color,
+        $saturation: 50%,
+        $lightness: -30%
+      );
+    }
+
+    &.opened:hover {
+      background: scale-color(
+        $bottom-color,
+        $saturation: 50%,
+        $lightness: -50%
+      );
+    }
+
+    &.opened:active {
+      background: darken($bottom-color, 10);
+    }
+  }
+
+  input[type='number'] {
+    color: inherit;
+    font: {
+      family: inherit;
+      size: inherit;
+    }
+    background: $textarea-color;
+    border: none;
+    outline: none;
+    padding: 0.2rem $spacer;
+    width: 4rem;
+    border-radius: 0.5rem;
+  }
+
+  label {
+    padding: 0.4rem 0.7rem;
   }
 }

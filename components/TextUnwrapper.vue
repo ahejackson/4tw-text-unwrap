@@ -2,24 +2,25 @@
   <div class="text-unwrapper">
     <section class="text-unwrapper-loadfile">
       <text-reader @load="loadfile($event)">
-        <fa icon="file-upload"/> Upload File
+        <fa icon="file-upload"/>Upload File
       </text-reader>
     </section>
 
-    <textarea
-      v-model="text"
-      placeholder="Paste text to unwrap here"
-      rows="10"
-      cols="80"
-      class="text-unwrapper-textarea"
-    ></textarea>
+    <section class="text-unwrapper-textarea-section">
+      <textarea
+        v-model="text"
+        placeholder="Paste text to unwrap here"
+        class="text-unwrapper-textarea"
+        :style="textAreaWidth"
+      ></textarea>
+    </section>
 
     <section class="text-unwrapper-controls">
       <button type="button" @click="unwrap">
-        <fa icon="align-left"/> Unwrap
+        <fa icon="align-left"/>Unwrap
       </button>
       <button type="button" @click="download">
-        <fa icon="download"/> Download
+        <fa icon="download"/>Download
       </button>
       <button
         type="button"
@@ -27,14 +28,12 @@
         v-clipboard:success="copySuccess"
         v-clipboard:error="copyError"
       >
-        <fa icon="copy"/> Copy Text
+        <fa icon="copy"/>Copy Text
       </button>
     </section>
 
-    <section class="text-unwrapper-settings">
-      <fa icon="cog"/> Settings
-      Wrap width:
-      <input type="number" v-model="linewidth">
+    <section class="text-unwrapper-settings-section">
+      <text-unwrapper-settings v-model.number="linewidth"/>
     </section>
   </div>
 </template>
@@ -42,13 +41,15 @@
 <script>
 import { saveAs } from 'file-saver'
 
-import TextReader from '@/components/TextReader'
+import TextReader from '@/components/TextReader.vue'
+import TextUnwrapperSettings from '@/components/TextUnwrapperSettings.vue'
 
 export default {
   name: 'TextUnwrapper',
 
   components: {
-    TextReader
+    TextReader,
+    TextUnwrapperSettings
   },
 
   data() {
@@ -65,13 +66,19 @@ export default {
     }
   },
 
+  computed: {
+    textAreaWidth: function() {
+      return `max-width: ${this.linewidth + 10}ch;`
+    }
+  },
+
   methods: {
     copySuccess: function(e) {
-      alert('You just copied: ' + e.text)
+      // alert('You just copied: ' + e.text)
     },
 
     copyError: function(e) {
-      alert('Failed to copy text')
+      // alert('Failed to copy text')
     },
 
     download: function() {
