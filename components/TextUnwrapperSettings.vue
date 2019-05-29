@@ -24,7 +24,7 @@ export default {
 
   data() {
     return {
-      showSettings: true
+      showSettings: false
     }
   }
 }
