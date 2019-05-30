@@ -113,7 +113,6 @@ export default {
       let nextLineFirstWord = ''
 
       for (let i = 0; i < lines.length; i++) {
-        console.log(`Starting ${i}: "${lines[i]}"`)
         // Is there a next line?
         if (i + 1 < lines.length) {
           nextLine = lines[i + 1]
@@ -122,30 +121,21 @@ export default {
         }
 
         nextLineFirstWord = nextLine.split(' ', 1)[0]
-        console.log(
-          `Nextlinefw: "${nextLineFirstWord}" ${nextLineFirstWord !== ''}`
-        )
 
         // If it exists, add the first word of the next line to this line
         if (nextLineFirstWord !== '') {
           // if length(lines[i] + ' ' + nextLineFirstWord) is >= to the linewrap, we unwrap
-          console.log(
-            `Lengths: ${lines[i].length + nextLineFirstWord.length + 1}`
-          )
           if (
             lines[i].length + nextLineFirstWord.length + 1 >=
             this.linewidth
           ) {
             // then the line was wrapped so lets unwrap it
             unwrapped += lines[i] + ' '
-            console.log('Joining lines')
           } else {
             unwrapped += lines[i] + '\n'
-            console.log('Not joining')
           }
         } else {
           unwrapped += lines[i] + '\n'
-          console.log('Nothing to join')
         }
       }
 
