@@ -31,7 +31,8 @@ def unwrap(lines):
         if next_line_first_word != '':
             extended_line = l + ' ' + next_line_first_word
 
-            if len(extended_line) >= 70:
+            # Check that the original line was wrapped and the extended line would be longer than the wrap length
+            if len(l) <= 70 and len(extended_line) >= 70:
                 # This line was wrapped due to 70-char limit => unwrap it!
                 unwrapped += l + ' '
             else:

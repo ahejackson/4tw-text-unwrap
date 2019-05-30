@@ -125,7 +125,9 @@ export default {
         // If it exists, add the first word of the next line to this line
         if (nextLineFirstWord !== '') {
           // if length(lines[i] + ' ' + nextLineFirstWord) is >= to the linewrap, we unwrap
+          // But also check that the original line was wrapped and the extended line would be longer than the wrap length
           if (
+            lines[i].length <= this.linewidth &&
             lines[i].length + nextLineFirstWord.length + 1 >=
             this.linewidth
           ) {
