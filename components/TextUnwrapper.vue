@@ -44,6 +44,8 @@ import { saveAs } from 'file-saver'
 import TextReader from '@/components/TextReader.vue'
 import TextUnwrapperSettings from '@/components/TextUnwrapperSettings.vue'
 
+const cleaner = new RegExp(String.fromCharCode(160), 'g')
+
 export default {
   name: 'TextUnwrapper',
 
@@ -92,19 +94,26 @@ export default {
       this.download()
     },
 
+    clean: function() {
+      // 4tw exported strings sometimes include non-breaking spaces (character code 160) instead of spaces
+      // parse and replace them
+      this.text = this.text.replace(cleaner, ' ')
+    },
+
     unwrap: function() {
       if (this.text == '') {
         return
       }
 
+      this.clean()
       let lines = this.text.split('\n')
 
       let unwrapped = ''
       let nextLine = ''
       let nextLineFirstWord = ''
-      let extendedLine = ''
 
       for (let i = 0; i < lines.length; i++) {
+        console.log(`Starting ${i}: "${lines[i]}"`)
         // Is there a next line?
         if (i + 1 < lines.length) {
           nextLine = lines[i + 1]
@@ -113,22 +122,30 @@ export default {
         }
 
         nextLineFirstWord = nextLine.split(' ', 1)[0]
+        console.log(
+          `Nextlinefw: "${nextLineFirstWord}" ${nextLineFirstWord !== ''}`
+        )
 
         // If it exists, add the first word of the next line to this line
-        if (nextLineFirstWord != ' ') {
-          extendedLine = lines[i] + ' ' + nextLineFirstWord
-        } else {
-          extendedLine = lines[i]
-        }
-
-        if (
-          lines[i].length <= this.linewidth &&
-          extendedLine.length > this.linewidth
-        ) {
-          // then the line was wrapped so lets unwrap it
-          unwrapped += lines[i] + ' '
+        if (nextLineFirstWord !== '') {
+          // if length(lines[i] + ' ' + nextLineFirstWord) is >= to the linewrap, we unwrap
+          console.log(
+            `Lengths: ${lines[i].length + nextLineFirstWord.length + 1}`
+          )
+          if (
+            lines[i].length + nextLineFirstWord.length + 1 >=
+            this.linewidth
+          ) {
+            // then the line was wrapped so lets unwrap it
+            unwrapped += lines[i] + ' '
+            console.log('Joining lines')
+          } else {
+            unwrapped += lines[i] + '\n'
+            console.log('Not joining')
+          }
         } else {
           unwrapped += lines[i] + '\n'
+          console.log('Nothing to join')
         }
       }
 

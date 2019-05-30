@@ -10,8 +10,14 @@ def outfilename(filename):
     name = os.path.splitext(os.path.basename(normpath))
     return os.path.join(os.path.dirname(normpath), name[0] + '-unwrap' + ''.join(name[1:]))
 
+def clean(lines):
+    # clean the string in case there are any non-breaking spaces
+    return [l.replace(chr(160), ' ') for l in lines]
+
 def unwrap(lines):
     unwrapped = ''
+
+    lines = clean(lines)    
 
     for i, l in enumerate(lines):
         # Is there a next line?
@@ -24,12 +30,13 @@ def unwrap(lines):
 
         if next_line_first_word != '':
             extended_line = l + ' ' + next_line_first_word
-        else:
-            extended_line = l
 
-        if len(l) <= 70 and len(extended_line) > 70:
-            # This line was wrapped due to 70-char limit => unwrap it!
-            unwrapped += l + ' '
+            if len(extended_line) >= 70:
+                # This line was wrapped due to 70-char limit => unwrap it!
+                unwrapped += l + ' '
+            else:
+                unwrapped += l + '\n'
+
         else:
             unwrapped += l + '\n'
     
