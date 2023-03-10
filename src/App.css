@@ -1,0 +1,64 @@
+.App {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  text-align: center;
+
+  font-family: var(--font-sans);
+  word-spacing: 1px;
+}
+
+/* Header */
+.header {
+  background-color: var(--gray-1);
+  padding: 1rem 0rem 0rem;
+}
+
+.title {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.title-first {
+  font-weight: 400;
+  color: var(--brand-1);
+}
+
+.title-last {
+  font-weight: 700;
+  color: var(--gray-3);
+}
+
+.header p {
+  margin: var(--spacer) calc(2 * var(--spacer));
+}
+
+/* Footer */
+.footer {
+  color: hsl(var(--gray-1-hsl) / 0.5);
+  background-color: var(--brand-2);
+  padding: var(--spacer);
+}
+
+.footer a {
+  color: hsl(var(--gray-1-hsl) / 0.85);
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: hsl(var(--brand-4-hsl) / 0.5);
+  text-underline-offset: 0.2rem;
+}
+
+.footer a:hover {
+  color: var(--gray-1);
+  text-decoration-color: var(--brand-4);
+}
+
+.footer a:focus-visible {
+  color: var(--gray-1);
+  background-color: var(--brand-3);
+  text-decoration-line: none;
+  outline: 2px solid var(--gray-1);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

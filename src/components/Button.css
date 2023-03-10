@@ -1,0 +1,64 @@
+.button {
+  color: var(--gray-1);
+  background: var(--brand-2);
+  border-radius: var(--border-radius);
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  line-height: normal;
+  padding: var(--spacer);
+  transition: background-color 300ms, outline-offset 200ms;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline-offset: -2px;
+}
+
+.button:hover,
+.button:focus-visible {
+  background-color: var(--brand-3);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--gray-1);
+  outline-offset: 0px;
+}
+
+.button:active {
+  background-color: var(--brand-4);
+  transform: translateY(2px);
+}
+
+.button svg {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.text-button {
+  font-weight: 700;
+  letter-spacing: 1px;
+  min-width: var(--button-width);
+}
+
+.text-button svg {
+  margin-right: var(--spacer);
+}
+
+.file-upload:focus-within {
+  background-color: var(--brand-3);
+  outline: 2px solid var(--gray-3);
+  outline-offset: 0px;
+}
+
+.file-upload input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+}

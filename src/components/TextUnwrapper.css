@@ -1,0 +1,63 @@
+.text-unwrapper {
+  background-color: var(--brand-1);
+  position: relative;
+}
+
+.text-unwrapper-loadfile {
+  background-color: var(--gray-1);
+  padding-bottom: var(--spacer);
+  display: flex;
+  justify-content: center;
+}
+
+.text-unwrapper-controls {
+  padding-top: var(--spacer);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacer);
+}
+
+@media screen and (min-width: 600px) {
+  .text-unwrapper-controls {
+    flex-direction: row;
+  }
+}
+
+/* Text Area */
+.text-unwrapper-textarea {
+  --textarea-width: 70ch;
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  width: 100%;
+
+  font-family: var(--font-mono);
+  color: var(--gray-2);
+  background-color: var(--gray-3);
+  border: 0;
+  outline: none;
+  resize: none;
+  display: block;
+  font-size: 0.9rem;
+  height: 40vh;
+}
+
+@media screen and (min-width: 600px) {
+  .text-unwrapper-textarea {
+    padding-inline: max(2rem, calc((100% - var(--textarea-width) - 16ch) / 2));
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .text-unwrapper-textarea {
+    font-size: 1rem;
+    height: 50vh;
+  }
+}
+
+.text-unwrapper-settings-section {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}

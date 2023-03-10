@@ -1,0 +1,28 @@
+@import url("reset.css");
+
+:root {
+  --font-mono: "Inconsolata", monospace;
+  --font-sans: "Noto Sans", sans-serif;
+
+  --gray-1-hsl: 210 20% 98%;
+  --gray-2-hsl: 210 14% 89%;
+  --gray-3-hsl: 210 10% 23%;
+
+  --brand-1-hsl: 210 74% 58%;
+  --brand-2-hsl: 210 74% 48%;
+  --brand-3-hsl: 210 87% 41%;
+  --brand-4-hsl: 210 87% 29%;
+
+  --gray-1: hsl(var(--gray-1-hsl));
+  --gray-2: hsl(var(--gray-2-hsl));
+  --gray-3: hsl(var(--gray-3-hsl));
+
+  --brand-1: hsl(var(--brand-1-hsl));
+  --brand-2: hsl(var(--brand-2-hsl));
+  --brand-3: hsl(var(--brand-3-hsl));
+  --brand-4: hsl(var(--brand-4-hsl));
+
+  --spacer: 0.7rem;
+  --button-width: 180px;
+  --border-radius: 0.5rem;
+}

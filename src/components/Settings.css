@@ -1,0 +1,100 @@
+.text-unwrapper-settings {
+  --icon-size: 1.5;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.text-unwrapper-settings-panel {
+  color: var(--gray-1);
+  background: var(--brand-2);
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  letter-spacing: 0px;
+  padding-block: 0.4rem;
+  padding-inline: 0.8rem calc(var(--icon-size) * 1rem + 0.6rem);
+  transform-origin: right;
+}
+
+.settings-button[aria-expanded="true"] + .text-unwrapper-settings-panel {
+  transform: translateX(calc(var(--icon-size) * 1rem)) scaleX(1);
+  transition: transform 350ms ease-out;
+}
+
+.settings-button[aria-expanded="false"] + .text-unwrapper-settings-panel {
+  transform: translateX(calc(var(--icon-size) * 1rem)) scaleX(0);
+  transition: transform 250ms ease-in;
+}
+
+.text-unwrapper-settings-label {
+  display: flex;
+  align-items: center;
+  letter-spacing: 0px;
+  gap: var(--spacer);
+}
+
+.settings-button[aria-expanded="true"]
+  + .text-unwrapper-settings-panel
+  .text-unwrapper-settings-label {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 200ms ease-out 150ms, opacity 250ms ease-out 200ms;
+}
+
+.settings-button[aria-expanded="false"]
+  + .text-unwrapper-settings-panel
+  .text-unwrapper-settings-label {
+  opacity: 0;
+  transform: translateX(25%);
+  transition: transform 100ms ease-in, opacity 100ms ease-in 50ms;
+}
+
+.text-unwrapper-settings-panel input[type="number"] {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--gray-3);
+  border: none;
+  outline: none;
+  padding: 0.2rem var(--spacer);
+  width: 4rem;
+  border-radius: var(--border-radius);
+}
+
+.settings-button {
+  border-radius: 50%;
+  padding: 1rem;
+  z-index: 1;
+}
+
+.settings-button[aria-expanded="false"] {
+}
+
+.settings-button[aria-expanded="false"] svg {
+  rotate: 0turn;
+}
+
+.settings-button[aria-expanded="true"] {
+  background-color: var(--brand-3);
+}
+
+.settings-button[aria-expanded="true"] svg {
+  rotate: -0.75turn;
+}
+
+.settings-button[aria-expanded="true"]:is(:hover, :focus-visible) {
+  background-color: var(--brand-4);
+}
+
+.settings-button svg {
+  display: block;
+  fill: hsl(var(--gray-1-hsl) / 0.7);
+  width: calc(var(--icon-size) * 1rem);
+  height: calc(var(--icon-size) * 1rem);
+  transform: translateX(calc(var(--icon-size) * 0.41px));
+  transition: rotate 500ms ease-in-out;
+}
+
+.settings-button:hover svg {
+  fill: hsl(var(--gray-1-hsl) / 0.9);
+}
