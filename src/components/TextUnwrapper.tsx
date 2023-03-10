@@ -52,13 +52,13 @@ function TextUnwrapper() {
     const file = e.target.files[0];
     const reader = new FileReader();
 
-    console.log("File uploading");
+    // console.log("File uploading");
     reader.addEventListener("load", handleFileRead, { once: true });
     reader.readAsText(file);
   }
 
   function handleFileRead(e: ProgressEvent<FileReader>) {
-    console.log("File uploaded");
+    // console.log("File uploaded");
     if (e.target?.result) {
       const newText = e.target.result as string;
       const unwrapped = unwrap(newText, wrapWidth);
