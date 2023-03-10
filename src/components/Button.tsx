@@ -3,11 +3,12 @@ import "./Button.css";
 type ButtonProps = {
   text?: string;
   icon?: string;
+  onClick: () => void;
 };
 
-function Button({ text, icon }: ButtonProps) {
+function Button({ text, icon, onClick }: ButtonProps) {
   return (
-    <button className={`button${text ? " text-button" : ""}`}>
+    <button className={`button${text ? " text-button" : ""}`} onClick={onClick}>
       {icon && (
         <svg>
           <use

@@ -1,9 +1,15 @@
 import { useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 import "./Settings.css";
 import "./Button.css";
 
-function Settings() {
+type SettingsProps = {
+  wrapWidth: number;
+  setWrapWidth: Dispatch<SetStateAction<number>>;
+};
+
+function Settings({ wrapWidth, setWrapWidth }: SettingsProps) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -22,7 +28,14 @@ function Settings() {
       <div className="text-unwrapper-settings-panel">
         <label className="text-unwrapper-settings-label">
           Existing wrap width
-          <input id="text-unwrapper-width" type="number" />
+          <input
+            id="text-unwrapper-width"
+            type="number"
+            value={wrapWidth}
+            onChange={(e) => setWrapWidth(Number(e.target.value))}
+            min="20"
+            max="120"
+          />
         </label>
       </div>
     </div>

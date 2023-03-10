@@ -27,7 +27,6 @@
 
 /* Text Area */
 .text-unwrapper-textarea {
-  --textarea-width: 70ch;
   padding-inline: 1rem;
   padding-block: 1rem;
   width: 100%;
@@ -45,7 +44,10 @@
 
 @media screen and (min-width: 600px) {
   .text-unwrapper-textarea {
-    padding-inline: max(2rem, calc((100% - var(--textarea-width) - 16ch) / 2));
+    padding-inline: max(
+      2rem,
+      calc((100% - var(--textarea-width, 70ch) - 16ch) / 2)
+    );
   }
 }
 
